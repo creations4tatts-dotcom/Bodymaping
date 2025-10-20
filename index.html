@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bodymap 3D Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <main class="viewer-wrap">
+        <model-viewer id="mv"
+          src="https://afhgrjnxblniaealowmk.supabase.co/storage/v1/object/public/Builder/compressed_1759699886895_bodymap%20(2).glb"
+          poster="poster.webp"
+          alt="Body map 3D model"
+          camera-controls
+          auto-rotate
+          touch-action="pan-y"
+          exposure="1"
+          shadow-intensity="1"
+          environment-image="neutral"
+          style="width:100%;height:100%;"
+        >
+          <!-- Hotspots will be added by JS -->
+        </model-viewer>
+      </main>
+
+      <aside class="panel">
+        <h2>Hotspot manager</h2>
+        <div class="controls">
+          <button id="addHotspot">Add hotspot</button>
+          <button id="export">Export JSON</button>
+          <label class="import">Import JSON<input id="importFile" type="file" accept="application/json" style="display:none"/></label>
+        </div>
+
+        <div id="info">
+          <p class="hint">Select or add a hotspot to edit.</p>
+          <div class="fields hidden">
+            <label>Label <input id="label" type="text"/></label>
+            <label>Pain (1-10) <input id="pain" type="number" min="0" max="10"/></label>
+            <label>Aftercare <textarea id="aftercare" rows="3"></textarea></label>
+            <label>Heal time <input id="heal" type="text" placeholder="e.g. 2-4 weeks"/></label>
+            <div class="buttons">
+              <button id="save">Save</button>
+              <button id="clear">Clear</button>
+              <button id="delete" style="background:#ff7b7b">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <section class="list">
+          <h3>Hotspots</h3>
+          <ul id="hotspotList"></ul>
+        </section>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
